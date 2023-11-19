@@ -2,20 +2,20 @@ package main;
 
 public class Game implements Runnable {
     private GameWindow gameWindow;
-    private GamePanel gamepanel;
+    private GamePanel gamePanel;
     private Thread gameThread;
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
 
     public Game() {
-        gamepanel = new GamePanel();
-        gameWindow = new GameWindow(gamepanel);
-        gamepanel.requestFocus();
+        gamePanel = new GamePanel();
+        gameWindow = new GameWindow(gamePanel);
+        gamePanel.requestFocus();
         startGameLoop();
     }
 
     public void update() {
-        gamepanel.updateGame();
+        gamePanel.updateGame();
     }
 
     private void startGameLoop() {
@@ -52,9 +52,9 @@ public class Game implements Runnable {
             }
 
             if (deltaF >= 1) {
-                gamepanel.repaint();
+                gamePanel.repaint();
                 frames++;
-                deltaU--;
+                deltaF--;
             }
 
             if (System.currentTimeMillis() - lastCheck >= 1000) {

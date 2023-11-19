@@ -18,16 +18,14 @@ public class GamePanel extends JPanel {
     private float xDelta = 100, yDelta = 100;
     private BufferedImage img;
     private BufferedImage[][] animations;
-    private int aniTick, aniIndex, aniSpeed = 15;
+    private int aniTick, aniIndex, aniSpeed = 25;
     private int playerAction = IDLE;
     private int playerDir = -1;
     private boolean moving = false;
 
 
     public GamePanel() {
-
         mouseInputs = new MouseInputs(this);
-
         importImg();
         loadAnimations();
 
@@ -55,16 +53,19 @@ public class GamePanel extends JPanel {
             img = ImageIO.read(is);
         } catch (IOException e) {
             e.printStackTrace();
-//            throw new RuntimeException(e);
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
 
     private void setPanelSize() {
         Dimension size = new Dimension(1280, 800);
-        setMinimumSize(size);
         setPreferredSize(size);
-        setMaximumSize(size);
     }
 
     public void setDirection(int direction) {
